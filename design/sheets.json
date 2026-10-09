@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "sheets": {
+    "rewards": {
+      "columns": ["id", "kind", "amount"],
+      "rows": [
+        {"id": "weapon_rank", "kind": "weapon_rank", "amount": 1},
+        {"id": "evolution_token", "kind": "evolution_token", "amount": 1},
+        {"id": "heal", "kind": "heal_half_heart", "amount": 1}
+      ]
+    },
+    "challenges": {
+      "columns": ["id", "duration_seconds", "modifier", "reward_id"],
+      "rows": [
+        {"id": "crossfire", "duration_seconds": 45, "modifier": "alternating_spawn_sides", "reward_id": "weapon_rank"},
+        {"id": "last_stand", "duration_seconds": 60, "modifier": "increasing_wave_pressure", "reward_id": "evolution_token"},
+        {"id": "breathing_room", "duration_seconds": 30, "modifier": "sparse_elite_waves", "reward_id": "heal"}
+      ]
+    },
+    "systems": {
+      "columns": ["id", "stages", "choices_per_stage", "seeded", "preserve_normal_route"],
+      "rows": [
+        {"id": "branch_planner", "stages": 4, "choices_per_stage": 2, "seeded": true, "preserve_normal_route": true}
+      ]
+    },
+    "weapons": {
+      "columns": ["id", "companion_name", "data_selector", "sprite_selector", "evolution_selector"],
+      "rows": [
+        {"id": "whip", "companion_name": "Whip", "data_selector": null, "sprite_selector": null, "evolution_selector": null},
+        {"id": "magic_wand", "companion_name": "Magic Wand", "data_selector": null, "sprite_selector": null, "evolution_selector": null}
+      ]
+    },
+    "survivors": {
+      "columns": ["id", "companion_name", "weapon_id", "data_selector", "sprite_selector", "ability_selector"],
+      "rows": [
+        {"id": "antonio", "companion_name": "Antonio", "weapon_id": "whip", "data_selector": null, "sprite_selector": null, "ability_selector": null},
+        {"id": "imelda", "companion_name": "Imelda", "weapon_id": "magic_wand", "data_selector": null, "sprite_selector": null, "ability_selector": null}
+      ]
+    },
+    "hooks": {
+      "columns": ["id", "game", "type_name", "member_name", "purpose"],
+      "rows": [
+        {"id": "character_selection", "game": "enter-the-gungeon", "type_name": null, "member_name": null, "purpose": "select a companion survivor"},
+        {"id": "room_branch", "game": "enter-the-gungeon", "type_name": null, "member_name": null, "purpose": "connect optional challenges without obstructing normal exploration"},
+        {"id": "auto_weapon", "game": "enter-the-gungeon", "type_name": null, "member_name": null, "purpose": "fire companion weapons alongside aimed guns"},
+        {"id": "evolution", "game": "enter-the-gungeon", "type_name": null, "member_name": null, "purpose": "apply companion evolution rules"},
+        {"id": "companion_content", "game": "vampire-survivors", "type_name": null, "member_name": null, "purpose": "read actual character and weapon content from the player's copy"}
+      ]
+    }
+  },
+  "references": [
+    {"sheet": "challenges", "column": "reward_id", "target": "rewards"},
+    {"sheet": "survivors", "column": "weapon_id", "target": "weapons"}
+  ],
+  "verification": {
+    "rewards": "design_tested",
+    "challenges": "design_tested",
+    "systems": "design_tested",
+    "weapons": "requires_game_inspection",
+    "survivors": "requires_game_inspection",
+    "hooks": "requires_game_inspection"
+  }
+}
