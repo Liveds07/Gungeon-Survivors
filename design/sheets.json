@@ -2,55 +2,370 @@
   "schema_version": 1,
   "sheets": {
     "rewards": {
-      "columns": ["id", "kind", "amount"],
+      "columns": [
+        "id",
+        "kind",
+        "amount"
+      ],
       "rows": [
-        {"id": "weapon_rank", "kind": "weapon_rank", "amount": 1},
-        {"id": "evolution_token", "kind": "evolution_token", "amount": 1},
-        {"id": "heal", "kind": "heal_half_heart", "amount": 1}
+        {
+          "id": "weapon_rank",
+          "kind": "weapon_rank",
+          "amount": 1
+        },
+        {
+          "id": "evolution_token",
+          "kind": "evolution_token",
+          "amount": 1
+        },
+        {
+          "id": "heal",
+          "kind": "heal_half_heart",
+          "amount": 1
+        }
       ]
     },
     "challenges": {
-      "columns": ["id", "duration_seconds", "modifier", "reward_id"],
+      "columns": [
+        "id",
+        "duration_seconds",
+        "modifier",
+        "reward_id"
+      ],
       "rows": [
-        {"id": "crossfire", "duration_seconds": 45, "modifier": "alternating_spawn_sides", "reward_id": "weapon_rank"},
-        {"id": "last_stand", "duration_seconds": 60, "modifier": "increasing_wave_pressure", "reward_id": "evolution_token"},
-        {"id": "breathing_room", "duration_seconds": 30, "modifier": "sparse_elite_waves", "reward_id": "heal"}
+        {
+          "id": "crossfire",
+          "duration_seconds": 45,
+          "modifier": "alternating_spawn_sides",
+          "reward_id": "weapon_rank"
+        },
+        {
+          "id": "last_stand",
+          "duration_seconds": 60,
+          "modifier": "increasing_wave_pressure",
+          "reward_id": "evolution_token"
+        },
+        {
+          "id": "breathing_room",
+          "duration_seconds": 30,
+          "modifier": "sparse_elite_waves",
+          "reward_id": "heal"
+        }
       ]
     },
     "systems": {
-      "columns": ["id", "stages", "choices_per_stage", "seeded", "preserve_normal_route"],
+      "columns": [
+        "id",
+        "stages",
+        "choices_per_stage",
+        "seeded",
+        "preserve_normal_route"
+      ],
       "rows": [
-        {"id": "branch_planner", "stages": 4, "choices_per_stage": 2, "seeded": true, "preserve_normal_route": true}
+        {
+          "id": "branch_planner",
+          "stages": 4,
+          "choices_per_stage": 2,
+          "seeded": true,
+          "preserve_normal_route": true
+        }
       ]
     },
     "weapons": {
-      "columns": ["id", "companion_name", "data_selector", "sprite_selector", "evolution_selector"],
+      "columns": [
+        "id",
+        "companion_name",
+        "data_selector",
+        "sprite_selector",
+        "evolution_selector",
+        "effect_selector"
+      ],
       "rows": [
-        {"id": "whip", "companion_name": "Whip", "data_selector": null, "sprite_selector": null, "evolution_selector": null},
-        {"id": "magic_wand", "companion_name": "Magic Wand", "data_selector": null, "sprite_selector": null, "evolution_selector": null}
+        {
+          "id": "whip",
+          "companion_name": "Whip",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/WHIP",
+          "sprite_selector": "resources.assets:Sprite/Whip",
+          "evolution_selector": "resources.assets:TextAsset/WEAPON_DATA/VAMPIRICA",
+          "effect_selector": "resources.assets:Sprite/slash"
+        },
+        {
+          "id": "magic_wand",
+          "companion_name": "Magic Wand",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/MAGIC_MISSILE",
+          "sprite_selector": "resources.assets:Sprite/WandHoly",
+          "evolution_selector": "resources.assets:TextAsset/WEAPON_DATA/HOLY_MISSILE",
+          "effect_selector": "resources.assets:Sprite/ProjectileHoly1;ProjectileHoly2"
+        }
       ]
     },
     "survivors": {
-      "columns": ["id", "companion_name", "weapon_id", "data_selector", "sprite_selector", "ability_selector"],
+      "columns": [
+        "id",
+        "companion_name",
+        "weapon_id",
+        "data_selector",
+        "sprite_selector",
+        "ability_selector",
+        "animation_selector"
+      ],
       "rows": [
-        {"id": "antonio", "companion_name": "Antonio", "weapon_id": "whip", "data_selector": null, "sprite_selector": null, "ability_selector": null},
-        {"id": "imelda", "companion_name": "Imelda", "weapon_id": "magic_wand", "data_selector": null, "sprite_selector": null, "ability_selector": null}
+        {
+          "id": "antonio",
+          "companion_name": "Antonio",
+          "weapon_id": "whip",
+          "data_selector": "resources.assets:TextAsset/CHARACTER_DATA/ANTONIO",
+          "sprite_selector": "resources.assets:Sprite/newAntonio_01",
+          "ability_selector": "resources.assets:TextAsset/CHARACTER_DATA/ANTONIO/level_rows",
+          "animation_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_antonio.bundle:Sprite/newAntonio_01..04"
+        },
+        {
+          "id": "imelda",
+          "companion_name": "Imelda",
+          "weapon_id": "magic_wand",
+          "data_selector": "resources.assets:TextAsset/CHARACTER_DATA/IMELDA",
+          "sprite_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_imelda.bundle:Sprite/newImelda_01",
+          "ability_selector": "resources.assets:TextAsset/CHARACTER_DATA/IMELDA/level_rows",
+          "animation_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_imelda.bundle:Sprite/newImelda_01..04"
+        }
       ]
     },
     "hooks": {
-      "columns": ["id", "game", "type_name", "member_name", "purpose"],
+      "columns": [
+        "id",
+        "game",
+        "type_name",
+        "member_name",
+        "purpose"
+      ],
       "rows": [
-        {"id": "character_selection", "game": "enter-the-gungeon", "type_name": null, "member_name": null, "purpose": "select a companion survivor"},
-        {"id": "room_branch", "game": "enter-the-gungeon", "type_name": null, "member_name": null, "purpose": "connect optional challenges without obstructing normal exploration"},
-        {"id": "auto_weapon", "game": "enter-the-gungeon", "type_name": null, "member_name": null, "purpose": "fire companion weapons alongside aimed guns"},
-        {"id": "evolution", "game": "enter-the-gungeon", "type_name": null, "member_name": null, "purpose": "apply companion evolution rules"},
-        {"id": "companion_content", "game": "vampire-survivors", "type_name": null, "member_name": null, "purpose": "read actual character and weapon content from the player's copy"}
+        {
+          "id": "character_selection",
+          "game": "enter-the-gungeon",
+          "type_name": "GameManager",
+          "member_name": "PrimaryPlayer",
+          "purpose": "select a companion survivor"
+        },
+        {
+          "id": "room_branch",
+          "game": "enter-the-gungeon",
+          "type_name": "Dungeonator.RoomHandler",
+          "member_name": "GetActiveEnemies; SealRoom; UnsealRoom",
+          "purpose": "connect optional challenges without obstructing normal exploration"
+        },
+        {
+          "id": "auto_weapon",
+          "game": "enter-the-gungeon",
+          "type_name": "SpawnManager",
+          "member_name": "SpawnProjectile(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion,System.Boolean)",
+          "purpose": "fire companion weapons alongside aimed guns"
+        },
+        {
+          "id": "evolution",
+          "game": "enter-the-gungeon",
+          "type_name": null,
+          "member_name": null,
+          "purpose": "apply companion evolution rules"
+        },
+        {
+          "id": "companion_content",
+          "game": "vampire-survivors",
+          "type_name": "UnityEngine.TextAsset",
+          "member_name": "CHARACTER_DATA; WEAPON_DATA (read-only via UnityPy)",
+          "purpose": "read actual character and weapon content from the player's copy"
+        }
+      ]
+    },
+    "slice": {
+      "columns": [
+        "id",
+        "damage_scale",
+        "xp_per_kill",
+        "xp_per_level",
+        "pixels_per_unit",
+        "max_weapon_rank",
+        "selection_key",
+        "challenge_key",
+        "projectile_speed",
+        "projectile_range",
+        "whip_reach",
+        "whip_half_height",
+        "minimum_attack_interval",
+        "walking_fps",
+        "effect_fps",
+        "projectile_visual_scale",
+        "whip_flash_seconds",
+        "hide_gun_graphics",
+        "remove_starting_items",
+        "neutral_gun_match",
+        "fallback_heal",
+        "selection_before_first_kill",
+        "whip_strike_pattern",
+        "skin_scope",
+        "projectile_art_facing",
+        "whip_collision_policy",
+        "whip_damage_window",
+        "starting_health",
+        "starting_armor",
+        "whip_destroy_hostile_projectiles",
+        "xp_level_linear",
+        "xp_level_quadratic",
+        "xp_enemy_health_reference",
+        "xp_enemy_min",
+        "xp_enemy_max",
+        "xp_boss_reward",
+        "xp_reward_policy",
+        "survivor_roll_visual",
+        "max_weapon_slots",
+        "max_accessory_slots",
+        "level_choice_count",
+        "evolution_policy",
+        "bloody_tear_heal",
+        "bloody_tear_heal_cooldown",
+        "accessory_scope"
+      ],
+      "rows": [
+        {
+          "id": "solo_first_slice",
+          "damage_scale": 4.0,
+          "xp_per_kill": 1.0,
+          "xp_per_level": 8.0,
+          "pixels_per_unit": 16.0,
+          "max_weapon_rank": 8,
+          "selection_key": "F6",
+          "challenge_key": "F7",
+          "projectile_speed": 18.0,
+          "projectile_range": 30.0,
+          "whip_reach": 4.5,
+          "whip_half_height": 1.0,
+          "minimum_attack_interval": 0.1,
+          "walking_fps": 8.0,
+          "effect_fps": 10.0,
+          "projectile_visual_scale": 0.75,
+          "whip_flash_seconds": 0.18,
+          "hide_gun_graphics": true,
+          "remove_starting_items": true,
+          "neutral_gun_match": "rusty",
+          "fallback_heal": 0.5,
+          "selection_before_first_kill": true,
+          "whip_strike_pattern": "alternate_horizontal_sides_using_installed_repeatInterval",
+          "skin_scope": "dungeon_only_native_breach_lobby",
+          "projectile_art_facing": "right_rotate_to_projectile_Direction",
+          "whip_collision_policy": "enemy_hitbox_overlap_shared_visual_rectangle",
+          "whip_damage_window": "visible_flash_once_per_enemy_per_strike",
+          "starting_health": 3.0,
+          "starting_armor": 0.0,
+          "whip_destroy_hostile_projectiles": true,
+          "xp_level_linear": 4.0,
+          "xp_level_quadratic": 0.5,
+          "xp_enemy_health_reference": 15.0,
+          "xp_enemy_min": 0.5,
+          "xp_enemy_max": 5.0,
+          "xp_boss_reward": 10.0,
+          "xp_reward_policy": "sqrt_max_health_relative_to_reference_clamped_with_boss_floor",
+          "survivor_roll_visual": "one_full_rotation_over_host_modified_roll_duration",
+          "max_weapon_slots": 6,
+          "max_accessory_slots": 6,
+          "level_choice_count": 3,
+          "evolution_policy": "boss_kill_offers_one_ready_evolution_weapon_max_rank_required_passive_any_rank_replaces_same_slot",
+          "bloody_tear_heal": 0.5,
+          "bloody_tear_heal_cooldown": 1.0,
+          "accessory_scope": "automatic_companion_weapons_and_xp_plus_host_health"
+        }
+      ]
+    },
+    "ui": {
+      "columns": [
+        "id",
+        "sprite_selector",
+        "choice_policy",
+        "freeze_world",
+        "navigation_actions",
+        "confirm_action",
+        "keyboard_navigation",
+        "input_grace_seconds",
+        "stick_engage_threshold",
+        "stick_release_threshold",
+        "navigation_cooldown_seconds",
+        "stick_repeat_policy",
+        "inventory_layout"
+      ],
+      "rows": [
+        {
+          "id": "level_choice",
+          "sprite_selector": "resources.assets:Sprite/frameB_blue",
+          "choice_policy": "seeded_three_weapon_or_accessory_choices_separate_boss_evolution_reward",
+          "freeze_world": true,
+          "navigation_actions": "GungeonActions.SelectUp;SelectDown;Up;Down",
+          "confirm_action": "BraveInput.MenuInteractPressed;native_localized_confirm_device_fallback",
+          "keyboard_navigation": "UpArrow;DownArrow;Return",
+          "input_grace_seconds": 0.2,
+          "stick_engage_threshold": 0.7,
+          "stick_release_threshold": 0.25,
+          "navigation_cooldown_seconds": 0.25,
+          "stick_repeat_policy": "one_step_per_tilt_requires_return_to_center",
+          "inventory_layout": "two_rows_six_slots_weapon_and_accessory_icons_rank_or_evolved"
+        }
+      ]
+    },
+    "accessories": {
+      "columns": [
+        "id",
+        "companion_name",
+        "data_selector",
+        "sprite_selector"
+      ],
+      "rows": [
+        {
+          "id": "hollow_heart",
+          "companion_name": "Hollow Heart",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/MAXHEALTH",
+          "sprite_selector": "resources.assets:Sprite/HeartBlack"
+        },
+        {
+          "id": "empty_tome",
+          "companion_name": "Empty Tome",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/COOLDOWN",
+          "sprite_selector": "resources.assets:Sprite/Book2"
+        },
+        {
+          "id": "spinach",
+          "companion_name": "Spinach",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/POWER",
+          "sprite_selector": "resources.assets:Sprite/Leaf"
+        },
+        {
+          "id": "candelabrador",
+          "companion_name": "Candelabrador",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/AREA",
+          "sprite_selector": "resources.assets:Sprite/Candelabra"
+        },
+        {
+          "id": "duplicator",
+          "companion_name": "Duplicator",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/AMOUNT",
+          "sprite_selector": "resources.assets:Sprite/Ring"
+        },
+        {
+          "id": "crown",
+          "companion_name": "Crown",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/GROWTH",
+          "sprite_selector": "resources.assets:Sprite/Crown"
+        }
       ]
     }
   },
   "references": [
-    {"sheet": "challenges", "column": "reward_id", "target": "rewards"},
-    {"sheet": "survivors", "column": "weapon_id", "target": "weapons"}
+    {
+      "sheet": "challenges",
+      "column": "reward_id",
+      "target": "rewards"
+    },
+    {
+      "sheet": "survivors",
+      "column": "weapon_id",
+      "target": "weapons"
+    }
   ],
   "verification": {
     "rewards": "design_tested",
@@ -58,6 +373,25 @@
     "systems": "design_tested",
     "weapons": "requires_game_inspection",
     "survivors": "requires_game_inspection",
-    "hooks": "requires_game_inspection"
+    "hooks": "requires_game_inspection",
+    "slice": "prototype_design_unverified",
+    "ui": "prototype_design_unverified",
+    "accessories": "installed_data_inspected_gameplay_pending"
+  },
+  "inspection": {
+    "host": {
+      "store": "Epic",
+      "version": "2.1.9a",
+      "unity": "2017.4.27f1",
+      "backend": "Mono",
+      "loader": "BepInEx 5.4.23.5"
+    },
+    "companion": {
+      "store": "Steam",
+      "build_id": "25016043",
+      "unity": "6000.0.62f1",
+      "backend": "IL2CPP"
+    },
+    "status": "local_files_inspected_partial_solo_combat_verified"
   }
 }

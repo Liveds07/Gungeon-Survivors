@@ -5,8 +5,8 @@ guns with evolving automatic weapons and optional survival branches.
 
 ## Status
 
-Early source-only development. There is no playable mod or release yet.
-The route planner is tested separately; it does not modify or run either game.
+An early solo BepInEx 5 prototype runs in a private copy of the installed Gungeon. Companion sprites and weapon data come from the installed Vampire Survivors copy. Both automatic weapons have killed real enemies and awarded XP; the whip check used controlled positioning. The full first-playable target remains unfinished; there is no release.
+See LOCAL_DEVELOPMENT.md for setup and MODLOG.md for evidence and limitations.
 No game files, sprites, assemblies, or decompiled code belong in this repository.
 
 ## First playable target
@@ -33,24 +33,22 @@ python tools/preflight.py --scope release
 ```
 
 Release preflight currently fails intentionally: the actual game integrations
-have not been inspected or verified. Passing design checks is not a playable
+have not all been verified in game. Passing design checks is not a playable
 build, an install test, or permission to upload.
 
 JSON sheets are the source of truth. Change them before implementation.
 Every cell has a verification status; release preflight lists unfinished cells
 and broken cross-sheet references. No game API names are assumed.
 
-## Required next access
+## Local game integration
 
-Continue on an agent-accessible machine with the user's installed copies of
-both games. This Linux cloud machine cannot see the user's PC or Steam library.
-Inspect the actual engines, versions, managed assemblies and asset containers;
-then implement a BepInEx 5 host plugin and read companion content at runtime
-from the Vampire Survivors folder supplied by Melty. Do not ship game content.
+Both installed games have been inspected on the Windows development machine:
+Gungeon 2.1.9a uses Unity 2017.4.27f1 / Mono; Vampire Survivors Steam build
+25016043 uses Unity 6000.0.62f1 / IL2CPP. See MODLOG.md for the evidence.
 
-Melty's catalog supports automatic BepInEx 5 v5.4.23.5 installation for Gungeon.
-Do not infer compatibility with the user's uninspected game version from that.
-No companion loader is required unless runtime inspection establishes a need.
+Melty's local catalog supports BepInEx 5 v5.4.23.5 for Gungeon. That loader has
+run the prototype locally. Melty companion-folder wiring and installation
+recipe tests are still pending. No companion loader is currently required.
 
 ## Publication
 
@@ -59,3 +57,6 @@ verify all sheet cells, compile against actual host references, test in Gungeon,
 test installation, capture real gameplay, run Melty package/recipe/one-click
 checks, and establish the author's license, credits and remix permissions.
 The final publication requires the user's explicit approval.
+
+
+
