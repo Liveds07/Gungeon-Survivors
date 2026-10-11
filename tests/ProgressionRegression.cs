@@ -12,6 +12,8 @@ class ProgressionRegression {
   Check(Progression.Reward(60,false,15,.5f,5,10)==2);
   Check(Progression.Reward(60000,false,15,.5f,5,10)==5);
   Check(Progression.Reward(60,true,15,.5f,5,10)==10);
+  for(int floor=1;floor<=5;floor++) Check(Progression.BossReward(floor,10)==10*floor);
+  Check(Progression.BossReward(-1,10)==10);
   float xp=40; int level=1;
   while(xp>=Progression.Required(level,8,4,.5f)) xp-=Progression.Required(level++,8,4,.5f);
   Check(level==4 && xp==1.5f);

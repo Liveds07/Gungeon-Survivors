@@ -1,0 +1,37 @@
+{
+  "status": "implemented_0_2_17_native_vertical_slice_verified",
+  "source": "player_installed_Vampire_Survivors_resources_assets_and_addressable_bundles",
+  "survivor": {
+    "id": "pasqualina",
+    "data_selector": "CHARACTER_DATA/PASQUALINA",
+    "weapon_id": "runetracer",
+    "projectile_speed_policy": "installed base1.1 plus installed increments0.1 at levels5/10/15; automatic projectiles only",
+    "health_policy": "installed100HP converts to native3 hearts; innate armor0"
+  },
+  "weapon": {
+    "id": "runetracer",
+    "data_selector": "WEAPON_DATA/DIAMOND",
+    "evolution_selector": "WEAPON_DATA/ROCHER",
+    "damage_policy": "quarter damage conversion shared with wand; installed rank power/speed/amount/duration; swept actor hits with installed500ms cooldown",
+    "effects_policy": "installed Diamond2 head with fading TrailRenderer; native tile bounce; evolved Screeno_0..29 explosion sprites from private runtime cache",
+    "evolution_policy": "rank8 and owned ARMOR; consumed native shields do not invalidate prerequisite; no character XP/level grant"
+  },
+  "accessory": {
+    "id": "armor",
+    "data_selector": "WEAPON_DATA/ARMOR",
+    "shield_policy": "one native Gungeon armor shield per new rank once per run; five ranks; no stat-refresh refill; no HP/maxHP change"
+  },
+  "ending": {
+    "requested_default": "cultist",
+    "status": "on_hold_by_user_2026_10_10",
+    "installed_findings": "CoopPastController_Update_and_intro_outro_directly_access_PrimaryPlayer_and_SecondaryPlayer",
+    "implementation_constraint": "do_not_globally_change_characterIdentity_or_load_two_player_past_with_missing_SecondaryPlayer",
+    "next_step": "inspect_terminal_past_selector_and_design_solo_equivalent_then_test_complete_ending_on_backed_up_saves"
+  },
+  "remaining_validation": [
+    "full new balance playthrough",
+    "physical 8BitDo movement/menu/death testing",
+    "native saved mid-run persistence",
+    "Melty supported recipe and installation tests"
+  ]
+}

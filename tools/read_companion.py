@@ -45,9 +45,21 @@ def read_content(companion, sheets, output):
                 item = obj.read()
                 sprites.setdefault(item.m_Name, item)
     out.mkdir(parents=True, exist_ok=True)
-    result = {'survivors': [], 'weapons': [], 'accessories': [], 'challenges': config['sheets']['challenges']['rows'],
+    for weapon in config['sheets']['weapons']['rows']:
+        selector = weapon.get('explosion_effect_selector', 'not_applicable')
+        if selector == 'not_applicable':
+            continue
+        container, _ = selector.split(':Sprite/', 1)
+        bundle = (data_root / container).resolve()
+        if data_root.resolve() not in bundle.parents or not bundle.is_file():
+            raise ValueError('Missing installed explosion sprite container')
+        for obj in UnityPy.load(str(bundle)).objects:
+            if obj.type.name == 'Sprite':
+                item = obj.read()
+                sprites.setdefault(item.m_Name, item)
+    result = {'survival': config['sheets']['survival_rooms']['rows'][0], 'chestRewards': config['sheets']['chest_rewards']['rows'][0], 'survivors': [], 'weapons': [], 'accessories': [], 'challenges': config['sheets']['challenges']['rows'],
               'rewards': config['sheets']['rewards']['rows'], 'settings': config['sheets']['slice']['rows'][0],
-              'ui': config['sheets']['ui']['rows'][0], 'source': str(root), 'sourceHash': hashlib.sha256(resource.read_bytes()).hexdigest()}
+              'ui': config['sheets']['ui']['rows'][0], 'normalHealth': tables['CHARACTER_DATA']['IMELDA'][0]['maxHp'], 'source': str(root), 'sourceHash': hashlib.sha256(resource.read_bytes()).hexdigest()}
     for row in config['sheets']['survivors']['rows']:
         key = row['data_selector'].rsplit('/', 1)[-1]
         levels = tables['CHARACTER_DATA'][key]
@@ -62,9 +74,11 @@ def read_content(companion, sheets, output):
             sprites[name].image.save(out / (frame_id + '.png'))
             frame_ids.append(frame_id)
         result['survivors'].append({'id': row['id'], 'name': base['charName'], 'weaponId': row['weapon_id'],
-                                   'power': base['power'], 'growth': base['growth'], 'walkFrames': frame_ids,
+                                   'power': base['power'], 'growth': base['growth'], 'speed': base.get('speed', 1), 'maxHp': base['maxHp'], 'armor': base.get('armor', 0), 'magnet': base.get('magnet', 0), 'regen': base.get('regen', 0), 'walkFrames': frame_ids,
+                                   'fullName': (base['charName'] + ' ' + base.get('surname', '')).strip(),
+                                   'description': base.get('description', ''),
                                    'levels': [{'level': r.get('level', 0), 'power': r.get('power', 0),
-                                               'growth': r.get('growth', 0)} for r in levels[1:]]})
+                                               'growth': r.get('growth', 0), 'speed': r.get('speed', 0)} for r in levels[1:]]})
     for row in config['sheets']['weapons']['rows']:
         key = row['data_selector'].rsplit('/', 1)[-1]
         levels = tables['WEAPON_DATA'][key]
@@ -72,18 +86,22 @@ def read_content(companion, sheets, output):
         for target, base in ((row['id'], levels[0]), (row['id'] + '_evolved', evo)):
             sprite_name = base['frameName'].removesuffix('.png')
             sprites[sprite_name].image.save(out / (target + '.png'))
-        effect_names = row['effect_selector'].rsplit('/', 1)[-1].split(';')
-        effect_ids = ['whip_effect'] if row['id'] == 'whip' else ['wand_effect_1', 'wand_effect_2']
-        if len(effect_names) != len(effect_ids):
-            raise ValueError('Unexpected attack frame count in sheet')
-        for effect_id, name in zip(effect_ids, effect_names):
-            sprites[name].image.save(out / (effect_id + '.png'))
+        sequences = []
+        for key_name, suffix in (('effect_selector', 'effect'), ('evolved_effect_selector', 'evolved_effect'), ('explosion_effect_selector', 'explosion')):
+            ids = []
+            selector = row.get(key_name, 'not_applicable')
+            names = [] if selector == 'not_applicable' else selector.rsplit('/', 1)[-1].split(';')
+            for index, name in enumerate(names):
+                effect_id = row['id'] + '_' + suffix + '_' + str(index + 1)
+                sprites[name].image.save(out / (effect_id + '.png'))
+                ids.append(effect_id)
+            sequences.append(ids)
         # Data stays in the cache; the source contains selectors and conversion logic only.
         result['weapons'].append({'id': row['id'], 'name': levels[0]['name'], 'evolutionName': evo['name'],
-                                  'effectFrames': effect_ids, 'requiredPassive': evo['requires'][0], 'repeatInterval': levels[0]['repeatInterval'] / 1000,
-                                  'levels': [{k: r.get(k, 0) for k in ('power', 'interval', 'amount', 'area', 'penetrating', 'speed')}
+                                  'effectFrames': sequences[0], 'evolvedEffectFrames': sequences[1], 'explosionFrames': sequences[2], 'requiredPassive': evo['requires'][0], 'repeatInterval': levels[0]['repeatInterval'] / 1000, 'evolutionIntervalDependsOnDuration': evo.get('intervalDependsOnDuration', False),
+                                  'levels': [{k: r.get(k, 0) for k in ('power', 'interval', 'amount', 'area', 'penetrating', 'speed', 'duration', 'hitBoxDelay')}
                                              for r in levels],
-                                  'evolution': {k: evo.get(k, 0) for k in ('power', 'interval', 'amount', 'area', 'penetrating', 'speed', 'critChance', 'critMul')}})
+                                  'evolution': {k: evo.get(k, 0) for k in ('power', 'interval', 'amount', 'area', 'penetrating', 'speed', 'critChance', 'critMul', 'duration', 'hitBoxDelay')}})
     for row in config['sheets']['accessories']['rows']:
         key = row['data_selector'].rsplit('/', 1)[-1]
         levels = tables['WEAPON_DATA'][key]
@@ -91,12 +109,13 @@ def read_content(companion, sheets, output):
             raise ValueError('Accessory selector is not an installed passive')
         sprites[levels[0]['frameName'].removesuffix('.png')].image.save(out / (row['id'] + '.png'))
         result['accessories'].append({'id': row['id'], 'dataKey': key, 'name': levels[0]['name'],
-                                     'description': levels[0]['description'],
-                                     'levels': [{k: r.get(k, 0) for k in ('power', 'area', 'amount', 'growth', 'cooldown', 'maxHp')} for r in levels]})
+                                     'description': ('Increases Coolness by 1 per rank.' if row.get('host_stat') == 'Coolness' else 'Grants one armor shield per rank, once per rank.' if row.get('host_stat') == 'Armor' else levels[0]['description']),
+                                     'levels': [dict({k: r.get(k, 0) for k in ('power', 'area', 'amount', 'growth', 'cooldown', 'maxHp', 'regen', 'armor')}, coolness=row.get('host_gain_per_rank', 0) if row.get('host_stat') == 'Coolness' else 0) for r in levels]})
     required = {w['requiredPassive'] for w in result['weapons']}
     available = {a['dataKey'] for a in result['accessories']}
     if not required.issubset(available):
         raise ValueError('Missing sheet-defined evolution accessory')
+    sprites[result['settings']['xp_gem_sprite_selector'].rsplit('/', 1)[-1]].image.save(out / 'xp_gem.png')
     sprites[result['ui']['sprite_selector'].rsplit('/', 1)[-1]].image.save(out / 'ui_frame.png')
     temp = out / 'content.json.tmp'
     temp.write_text(json.dumps(result), encoding='utf-8')

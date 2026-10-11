@@ -78,7 +78,10 @@
         "data_selector",
         "sprite_selector",
         "evolution_selector",
-        "effect_selector"
+        "effect_selector",
+        "evolved_effect_selector",
+        "effect_policy",
+        "explosion_effect_selector"
       ],
       "rows": [
         {
@@ -87,7 +90,10 @@
           "data_selector": "resources.assets:TextAsset/WEAPON_DATA/WHIP",
           "sprite_selector": "resources.assets:Sprite/Whip",
           "evolution_selector": "resources.assets:TextAsset/WEAPON_DATA/VAMPIRICA",
-          "effect_selector": "resources.assets:Sprite/slash"
+          "effect_selector": "resources.assets:Sprite/slash",
+          "evolved_effect_selector": "resources.assets:Sprite/slash",
+          "effect_policy": "Bloody_Tear_native_three_slash_layers_main_110011_additive_red_ff0000_and_purple_660066_offset_ghosts",
+          "explosion_effect_selector": "not_applicable"
         },
         {
           "id": "magic_wand",
@@ -95,7 +101,32 @@
           "data_selector": "resources.assets:TextAsset/WEAPON_DATA/MAGIC_MISSILE",
           "sprite_selector": "resources.assets:Sprite/WandHoly",
           "evolution_selector": "resources.assets:TextAsset/WEAPON_DATA/HOLY_MISSILE",
-          "effect_selector": "resources.assets:Sprite/ProjectileHoly1;ProjectileHoly2"
+          "effect_selector": "resources.assets:Sprite/ProjectileHoly1;ProjectileHoly2",
+          "evolved_effect_selector": "resources.assets:Sprite/ProjectileHoly1;ProjectileHoly2",
+          "effect_policy": "installed_sprite_sequence",
+          "explosion_effect_selector": "not_applicable"
+        },
+        {
+          "id": "garlic",
+          "companion_name": "Garlic",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/GARLIC",
+          "sprite_selector": "resources.assets:Sprite/Garlic",
+          "evolution_selector": "resources.assets:TextAsset/WEAPON_DATA/VORTEX",
+          "effect_selector": "resources.assets:Sprite/Rings3",
+          "evolved_effect_selector": "resources.assets:Sprite/circle",
+          "effect_policy": "GarlicWeapon_Rings3_and_VortexWeapon_black_circle_visible_backgrounds_per_enemy_installed_interval",
+          "explosion_effect_selector": "not_applicable"
+        },
+        {
+          "id": "runetracer",
+          "companion_name": "Runetracer",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/DIAMOND",
+          "sprite_selector": "resources.assets:Sprite/Diamond2",
+          "evolution_selector": "resources.assets:TextAsset/WEAPON_DATA/ROCHER",
+          "effect_selector": "resources.assets:Sprite/Diamond2",
+          "evolved_effect_selector": "resources.assets:Sprite/Diamond2",
+          "explosion_effect_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_weapon_nofuture.bundle:Sprite/Screeno_0;Screeno_1;Screeno_2;Screeno_3;Screeno_4;Screeno_5;Screeno_6;Screeno_7;Screeno_8;Screeno_9;Screeno_10;Screeno_11;Screeno_12;Screeno_13;Screeno_14;Screeno_15;Screeno_16;Screeno_17;Screeno_18;Screeno_19;Screeno_20;Screeno_21;Screeno_22;Screeno_23;Screeno_24;Screeno_25;Screeno_26;Screeno_27;Screeno_28;Screeno_29",
+          "effect_policy": "Installed DiamondProjectile/CarnageProjectile crystal and colored shrinking star trail; lifetime and per-enemy hit delay from installed data, passes through actors, native wall bounces. NO FUTURE uses installed Screeno explosion sequence on bounce and actual received damage."
         }
       ]
     },
@@ -107,7 +138,11 @@
         "data_selector",
         "sprite_selector",
         "ability_selector",
-        "animation_selector"
+        "animation_selector",
+        "health_policy",
+        "pickup_policy",
+        "armor_policy",
+        "projectile_speed_policy"
       ],
       "rows": [
         {
@@ -117,7 +152,11 @@
           "data_selector": "resources.assets:TextAsset/CHARACTER_DATA/ANTONIO",
           "sprite_selector": "resources.assets:Sprite/newAntonio_01",
           "ability_selector": "resources.assets:TextAsset/CHARACTER_DATA/ANTONIO/level_rows",
-          "animation_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_antonio.bundle:Sprite/newAntonio_01..04"
+          "animation_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_antonio.bundle:Sprite/newAntonio_01..04",
+          "health_policy": "installed_maxHp_over_normal_Imelda_reference_convert_to_host_half_hearts",
+          "pickup_policy": "installed_magnet_scales_collectible_XP_attraction_radius",
+          "armor_policy": "Installed starting armor maps one-to-one to native Gungeon armor shields; grant at run start or character selection, not each floor.",
+          "projectile_speed_policy": "Installed base speed plus installed character level-row speed increments; affects automatic projectiles only."
         },
         {
           "id": "imelda",
@@ -126,7 +165,37 @@
           "data_selector": "resources.assets:TextAsset/CHARACTER_DATA/IMELDA",
           "sprite_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_imelda.bundle:Sprite/newImelda_01",
           "ability_selector": "resources.assets:TextAsset/CHARACTER_DATA/IMELDA/level_rows",
-          "animation_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_imelda.bundle:Sprite/newImelda_01..04"
+          "animation_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_imelda.bundle:Sprite/newImelda_01..04",
+          "health_policy": "installed_maxHp_over_normal_Imelda_reference_convert_to_host_half_hearts",
+          "pickup_policy": "installed_magnet_scales_collectible_XP_attraction_radius",
+          "armor_policy": "Installed starting armor maps one-to-one to native Gungeon armor shields; grant at run start or character selection, not each floor.",
+          "projectile_speed_policy": "Installed base speed plus installed character level-row speed increments; affects automatic projectiles only."
+        },
+        {
+          "id": "poe",
+          "companion_name": "Poe",
+          "weapon_id": "garlic",
+          "data_selector": "resources.assets:TextAsset/CHARACTER_DATA/CAMILLO",
+          "sprite_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_poe.bundle:Sprite/newOld3_01",
+          "ability_selector": "resources.assets:TextAsset/CHARACTER_DATA/CAMILLO/level_rows",
+          "animation_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_poe.bundle:Sprite/newOld3_01..04",
+          "health_policy": "installed_maxHp_over_normal_Imelda_reference_convert_to_host_half_hearts",
+          "pickup_policy": "installed_magnet_scales_collectible_XP_attraction_radius",
+          "armor_policy": "Installed starting armor maps one-to-one to native Gungeon armor shields; grant at run start or character selection, not each floor.",
+          "projectile_speed_policy": "Installed base speed plus installed character level-row speed increments; affects automatic projectiles only."
+        },
+        {
+          "id": "pasqualina",
+          "companion_name": "Pasqualina Belpaese",
+          "weapon_id": "runetracer",
+          "data_selector": "resources.assets:TextAsset/CHARACTER_DATA/PASQUALINA",
+          "sprite_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_pasqualina.bundle:Sprite/newPasqualina_01",
+          "ability_selector": "resources.assets:TextAsset/CHARACTER_DATA/PASQUALINA/level_rows",
+          "animation_selector": "StreamingAssets/aa/StandaloneWindows64/vs_local_assets_character_pasqualina.bundle:Sprite/newPasqualina_01..04",
+          "health_policy": "installed_maxHp_over_normal_Imelda_reference_convert_to_host_half_hearts",
+          "pickup_policy": "installed_magnet_scales_collectible_XP_attraction_radius",
+          "armor_policy": "Installed starting armor maps one-to-one to native Gungeon armor shields; grant at run start or character selection, not each floor.",
+          "projectile_speed_policy": "Installed base speed plus installed character level-row speed increments; affects automatic projectiles only."
         }
       ]
     },
@@ -222,7 +291,49 @@
         "evolution_policy",
         "bloody_tear_heal",
         "bloody_tear_heal_cooldown",
-        "accessory_scope"
+        "accessory_scope",
+        "character_picker_policy",
+        "native_animation_policy",
+        "level_menu_action_gate",
+        "restart_policy",
+        "starter_cleanup_policy",
+        "survivor_depth_policy",
+        "chest_open_reward_policy",
+        "chest_break_reward_policy",
+        "xp_gem_sprite_selector",
+        "xp_pickup_radius",
+        "xp_collect_radius",
+        "xp_gem_speed",
+        "xp_gem_scale",
+        "xp_gem_limit",
+        "garlic_radius",
+        "garlic_aura_policy",
+        "pummarola_policy",
+        "regen_heart_step",
+        "soul_eater_heal",
+        "soul_eater_heal_cooldown",
+        "soul_eater_heal_chance",
+        "soul_eater_growth_per_healed_heart",
+        "soul_eater_max_power_bonus",
+        "soul_eater_policy",
+        "wand_damage_multiplier",
+        "enemy_population_multiplier",
+        "enemy_population_policy",
+        "boss_xp_policy",
+        "hide_ui_during_native_sequences",
+        "ui_visibility_policy",
+        "runetracer_damage_multiplier",
+        "runetracer_hit_radius",
+        "runetracer_max_projectiles",
+        "runetracer_trail_seconds",
+        "runetracer_trail_width",
+        "runetracer_explosion_radius",
+        "runetracer_explosion_cooldown_seconds",
+        "runetracer_explosion_visual_seconds",
+        "runetracer_retaliation_cooldown_seconds",
+        "runetracer_retaliation_armor_scale",
+        "runetracer_policy",
+        "armor_policy"
       ],
       "rows": [
         {
@@ -262,15 +373,57 @@
           "xp_enemy_min": 0.5,
           "xp_enemy_max": 5.0,
           "xp_boss_reward": 10.0,
-          "xp_reward_policy": "sqrt_max_health_relative_to_reference_clamped_with_boss_floor",
+          "xp_reward_policy": "health_weighted_collectible_XP_gems_growth_applied_at_collection_installed_magnet_radius",
           "survivor_roll_visual": "one_full_rotation_over_host_modified_roll_duration",
           "max_weapon_slots": 6,
           "max_accessory_slots": 6,
           "level_choice_count": 3,
-          "evolution_policy": "boss_kill_offers_one_ready_evolution_weapon_max_rank_required_passive_any_rank_replaces_same_slot",
+          "evolution_policy": "successful_chest_open_or_credited_boss_kill_offers_one_ready_evolution_max_weapon_rank_required_passive_any_rank_replaces_same_slot_no_banked_ineligible_rewards",
           "bloody_tear_heal": 0.5,
           "bloody_tear_heal_cooldown": 1.0,
-          "accessory_scope": "automatic_companion_weapons_and_xp_plus_host_health"
+          "accessory_scope": "automatic_companion_weapons_and_xp_plus_host_health",
+          "character_picker_policy": "breach_once_per_visit_entrance_fallback_each_quick_restart_F6_reopens_safe_precombat_menu",
+          "native_animation_policy": "preserve_host_armorless_capability_and_keep_native_animator_updating",
+          "level_menu_action_gate": "native_input_ready_no_roll_no_slide_no_queued_animation",
+          "restart_policy": "explicit_quick_restart_hook_resets_run_and_loadout_even_with_same_seed",
+          "starter_cleanup_policy": "wait_for_native_entrance_and_ready_input_once_per_fresh_run",
+          "survivor_depth_policy": "native_body_depth_layer_order_player_material_and_tk2d_perpendicular_vertex_tilt_using_private_sprite_geometry",
+          "chest_open_reward_policy": "once_per_successful_open_one_owned_weapon_rank_choice_OR_one_ready_evolution_character_level_and_xp_unchanged_no_accessory_or_new_weapon",
+          "chest_break_reward_policy": "once_per_unopened_chest_break_exactly_one_xp_no_growth_multiplier_no_evolution_no_native_item_drop",
+          "xp_gem_sprite_selector": "resources.assets:Sprite/GemBlue",
+          "xp_pickup_radius": 1.8,
+          "xp_collect_radius": 0.45,
+          "xp_gem_speed": 8.0,
+          "xp_gem_scale": 0.9,
+          "xp_gem_limit": 128,
+          "garlic_radius": 1.6,
+          "garlic_aura_policy": "persistent_circle_radius_base_times_sqrt_installed_area_per_enemy_installed_interval",
+          "pummarola_policy": "combat_only_installed_regen_converted_by_host_normal_health_over_installed_normal_health_half_heart_accumulator_reset_outside_combat_full_health_pause_loading_no_banked_heals",
+          "regen_heart_step": 0.5,
+          "soul_eater_heal": 0.5,
+          "soul_eater_heal_cooldown": 1.0,
+          "soul_eater_heal_chance": 0.1,
+          "soul_eater_growth_per_healed_heart": 0.1,
+          "soul_eater_max_power_bonus": 1.0,
+          "soul_eater_policy": "host_adaptation_chance_on_actual_damaging_aura_hit_shared_heal_cooldown_power_grows_only_actual_recovered_health_capped_double_base_power",
+          "wand_damage_multiplier": 0.25,
+          "enemy_population_multiplier": 2,
+          "enemy_population_policy": "one_extra_same_prefab_per_registered_regular_room_enemy_including_reinforcement_waves_exclude_boss_rooms_companions_harmless_ignore_room_clear_scripted_special_rooms_and_recursive_copies_native_clear_cell_spawn",
+          "boss_xp_policy": "exact_base_10_times_native_current_floor_minimum_1_before_collection_growth_boss_gem_at_player_feet_to_avoid_inaccessible_boss_positions",
+          "hide_ui_during_native_sequences": true,
+          "ui_visibility_policy": "hide_during_native_core_UI_suppression_dialogue_boss_intro_pixelator_intro_pause_loading_and_native_input_lock_defer_upgrade_choices",
+          "runetracer_damage_multiplier": 0.25,
+          "runetracer_hit_radius": 0.22,
+          "runetracer_max_projectiles": 50,
+          "runetracer_trail_seconds": 0.25,
+          "runetracer_trail_width": 0.22,
+          "runetracer_explosion_radius": 1.8,
+          "runetracer_explosion_cooldown_seconds": 0.15,
+          "runetracer_explosion_visual_seconds": 0.3,
+          "runetracer_retaliation_cooldown_seconds": 0.5,
+          "runetracer_retaliation_armor_scale": 0.1,
+          "runetracer_policy": "Host projectile damage conversion matches quartered Wand; installed rank speed/duration/power/amount and hitBoxDelay. Native tile bounce, per-flight per-enemy cooldown and swept crystal hitbox; all flight resources cleared on detach/reset/room change. Trail starts inactive at actual spawn transform, clears on first post-physics update, then enables; never seed trail or hit sweep from stale pooled rigidbody coordinates.",
+          "armor_policy": "One native Gungeon armor shield granted per new accessory rank (five ranks from installed ARMOR); grant ledger is per run and never refills consumed armor. Armor rank remains owned for evolution after shields are consumed."
         }
       ]
     },
@@ -284,27 +437,35 @@
         "confirm_action",
         "keyboard_navigation",
         "input_grace_seconds",
+        "stick_repeat_policy",
+        "inventory_layout",
+        "character_picker_layout",
+        "mute_controller_rumble",
+        "input_cleanup_policy",
+        "death_input_policy",
         "stick_engage_threshold",
         "stick_release_threshold",
-        "navigation_cooldown_seconds",
-        "stick_repeat_policy",
-        "inventory_layout"
+        "navigation_cooldown_seconds"
       ],
       "rows": [
         {
           "id": "level_choice",
           "sprite_selector": "resources.assets:Sprite/frameB_blue",
-          "choice_policy": "seeded_three_weapon_or_accessory_choices_separate_boss_evolution_reward",
+          "choice_policy": "seeded_three_level_up_weapon_or_accessory_choices_separate_chest_weapon_only_or_guaranteed_evolution_reward; uniform Fisher-Yates shuffle using a persistent per-run RNG seeded from fresh OS-generated GUID; no fixed first offers or item exclusions",
           "freeze_world": true,
-          "navigation_actions": "GungeonActions.SelectUp;SelectDown;Up;Down",
+          "navigation_actions": "Native directional action values with menu-local intentional-tilt filtering; keyboard arrows remain immediate.",
           "confirm_action": "BraveInput.MenuInteractPressed;native_localized_confirm_device_fallback",
           "keyboard_navigation": "UpArrow;DownArrow;Return",
           "input_grace_seconds": 0.2,
+          "stick_repeat_policy": "One selection per 70% tilt; return within25% of center before another;250ms cooldown; held stick on opening must be centered first.",
+          "inventory_layout": "two_rows_six_slots_weapon_and_accessory_icons_rank_or_evolved",
+          "character_picker_layout": "compact_sprite_tiles_hover_or_keyboard_controller_focus_shows_full_installed_description_below",
+          "mute_controller_rumble": true,
+          "input_cleanup_policy": "Release only mod-owned input/time overrides on close, death, load, restart and disable.",
+          "death_input_policy": "Native death-menu confirmation honors physical controller select/cancel even when last action binding was keyboard/mouse.",
           "stick_engage_threshold": 0.7,
           "stick_release_threshold": 0.25,
-          "navigation_cooldown_seconds": 0.25,
-          "stick_repeat_policy": "one_step_per_tilt_requires_return_to_center",
-          "inventory_layout": "two_rows_six_slots_weapon_and_accessory_icons_rank_or_evolved"
+          "navigation_cooldown_seconds": 0.25
         }
       ]
     },
@@ -313,44 +474,265 @@
         "id",
         "companion_name",
         "data_selector",
-        "sprite_selector"
+        "sprite_selector",
+        "health_policy",
+        "host_stat",
+        "host_gain_per_rank"
       ],
       "rows": [
         {
           "id": "hollow_heart",
           "companion_name": "Hollow Heart",
           "data_selector": "resources.assets:TextAsset/WEAPON_DATA/MAXHEALTH",
-          "sprite_selector": "resources.assets:Sprite/HeartBlack"
+          "sprite_selector": "resources.assets:Sprite/HeartBlack",
+          "health_policy": "Preserve current HP when maximum capacity increases; do not grant healing or Soul Eater healing growth.",
+          "host_stat": "existing_companion_stat_conversion",
+          "host_gain_per_rank": 0
         },
         {
           "id": "empty_tome",
           "companion_name": "Empty Tome",
           "data_selector": "resources.assets:TextAsset/WEAPON_DATA/COOLDOWN",
-          "sprite_selector": "resources.assets:Sprite/Book2"
+          "sprite_selector": "resources.assets:Sprite/Book2",
+          "health_policy": "No capacity-granted healing.",
+          "host_stat": "existing_companion_stat_conversion",
+          "host_gain_per_rank": 0
         },
         {
           "id": "spinach",
           "companion_name": "Spinach",
           "data_selector": "resources.assets:TextAsset/WEAPON_DATA/POWER",
-          "sprite_selector": "resources.assets:Sprite/Leaf"
+          "sprite_selector": "resources.assets:Sprite/Leaf",
+          "health_policy": "No capacity-granted healing.",
+          "host_stat": "existing_companion_stat_conversion",
+          "host_gain_per_rank": 0
         },
         {
           "id": "candelabrador",
           "companion_name": "Candelabrador",
           "data_selector": "resources.assets:TextAsset/WEAPON_DATA/AREA",
-          "sprite_selector": "resources.assets:Sprite/Candelabra"
+          "sprite_selector": "resources.assets:Sprite/Candelabra",
+          "health_policy": "No capacity-granted healing.",
+          "host_stat": "existing_companion_stat_conversion",
+          "host_gain_per_rank": 0
         },
         {
           "id": "duplicator",
           "companion_name": "Duplicator",
           "data_selector": "resources.assets:TextAsset/WEAPON_DATA/AMOUNT",
-          "sprite_selector": "resources.assets:Sprite/Ring"
+          "sprite_selector": "resources.assets:Sprite/Ring",
+          "health_policy": "No capacity-granted healing.",
+          "host_stat": "existing_companion_stat_conversion",
+          "host_gain_per_rank": 0
         },
         {
           "id": "crown",
           "companion_name": "Crown",
           "data_selector": "resources.assets:TextAsset/WEAPON_DATA/GROWTH",
-          "sprite_selector": "resources.assets:Sprite/Crown"
+          "sprite_selector": "resources.assets:Sprite/Crown",
+          "health_policy": "No capacity-granted healing.",
+          "host_stat": "existing_companion_stat_conversion",
+          "host_gain_per_rank": 0
+        },
+        {
+          "id": "pummarola",
+          "companion_name": "Pummarola",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/REGEN",
+          "sprite_selector": "resources.assets:Sprite/HeartRuby",
+          "health_policy": "No capacity-granted healing.",
+          "host_stat": "existing_companion_stat_conversion",
+          "host_gain_per_rank": 0
+        },
+        {
+          "id": "clover",
+          "companion_name": "Clover",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/LUCK",
+          "sprite_selector": "resources.assets:Sprite/Clover",
+          "health_policy": "Preserve current and maximum HP; no healing.",
+          "host_stat": "Coolness",
+          "host_gain_per_rank": 1
+        },
+        {
+          "id": "armor",
+          "companion_name": "Armor",
+          "data_selector": "resources.assets:TextAsset/WEAPON_DATA/ARMOR",
+          "sprite_selector": "resources.assets:Sprite/ArmorIron",
+          "health_policy": "No current or maximum HP change. Each newly acquired rank grants one native armor shield once; consumed shields never regenerate on stat refresh, menus or floor changes.",
+          "host_stat": "Armor",
+          "host_gain_per_rank": 1
+        }
+      ]
+    },
+    "survival_rooms": {
+      "columns": [
+        "id",
+        "enabled",
+        "duration_seconds",
+        "maximum_enemies",
+        "replacement_delay_seconds",
+        "arena_width",
+        "arena_height",
+        "corridor_width",
+        "corridor_height",
+        "minimum_per_floor",
+        "sign_text",
+        "enemy_pool_policy",
+        "currency_policy",
+        "completion_reward",
+        "entry_policy",
+        "clock_policy",
+        "generation_policy",
+        "spawn_policy",
+        "failure_policy",
+        "fallback_enemy_guid",
+        "doorway_cells",
+        "sign_policy",
+        "reward_tiers",
+        "wall_rectangles",
+        "column_rectangles",
+        "table_positions",
+        "cover_policy",
+        "enemy_limits",
+        "reward_s_chances",
+        "hearts_per_side",
+        "sign_rules_text",
+        "hud_policy"
+      ],
+      "rows": [
+        {
+          "id": "survival_5_minutes",
+          "enabled": true,
+          "duration_seconds": 300,
+          "maximum_enemies": 20,
+          "replacement_delay_seconds": 10,
+          "arena_width": 32,
+          "arena_height": 26,
+          "corridor_width": 14,
+          "corridor_height": 7,
+          "minimum_per_floor": 1,
+          "sign_text": "Challenge Room",
+          "enemy_pool_policy": "random_safe_regular_enemies_present_on_current_floor_exclude_bosses_mimics_companions_flag_unlock_enemies_fallback_installed_bullet_kin",
+          "currency_policy": "challenge_enemies_drop_XP_only_no_currency_or_native_loot",
+          "completion_reward": "Unlocked A chest; S chance by floor 0/25/50/75/100%; one full heart on each side.",
+          "entry_policy": "start_on_enter_arena_seal_until_completion_or_abort_optional_connected_side_branch_preserve_main_route",
+          "clock_policy": "300_gameplay_seconds_pause_during_pause_dialogue_loading_and_upgrade_menus",
+          "generation_policy": "native_flow_clone_splice_corridor_along_existing_edge_preserve_original_rooms_route_and_parent_exit_count_large_north_side_arena; constrain hall exits throughout all native pairing and fallback methods so arena uses north doorway",
+          "spawn_policy": "Floor cap applies only to challenge-scheduled enemies. Native summons and split offspring spawn immediately, are exempt from the cap and do not consume or create scheduled replacement slots. Track them separately for cleanup; XP only, no native loot.",
+          "failure_policy": "death_restart_or_leaving_arena_aborts_no_reward_clean_up_unlock",
+          "fallback_enemy_guid": "01972dee89fc4404a5c408d50007dad5",
+          "doorway_cells": 2,
+          "sign_policy": "Wall-mounted beside north entrance; native interact opens rules; readable screen-space interact prompt only while in range, hidden during rules, pause, menus and native sequences.",
+          "reward_tiers": [
+            "A",
+            "A",
+            "A",
+            "A",
+            "A"
+          ],
+          "wall_rectangles": [
+            {
+              "x": 7,
+              "y": 8,
+              "width": 3,
+              "height": 2
+            },
+            {
+              "x": 22,
+              "y": 8,
+              "width": 3,
+              "height": 2
+            },
+            {
+              "x": 7,
+              "y": 17,
+              "width": 3,
+              "height": 2
+            },
+            {
+              "x": 22,
+              "y": 17,
+              "width": 3,
+              "height": 2
+            }
+          ],
+          "column_rectangles": [
+            {
+              "x": 12,
+              "y": 12,
+              "width": 2,
+              "height": 2
+            },
+            {
+              "x": 18,
+              "y": 12,
+              "width": 2,
+              "height": 2
+            }
+          ],
+          "table_positions": [
+            {
+              "x": 10,
+              "y": 6
+            },
+            {
+              "x": 20,
+              "y": 6
+            },
+            {
+              "x": 10,
+              "y": 20
+            },
+            {
+              "x": 20,
+              "y": 20
+            }
+          ],
+          "cover_policy": "native_wall_tiles_and_column_islands_plus_installed_flippable_tables_keep_entrance_center_reward_and_wide_routes_clear",
+          "enemy_limits": [
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "reward_s_chances": [
+            0,
+            0.25,
+            0.5,
+            0.75,
+            1
+          ],
+          "hearts_per_side": 1,
+          "sign_rules_text": "Survive for 5 minutes against endless hordes of enemies and obtain great rewards in exchange.",
+          "hud_policy": "Display scheduled population only, labelled Enemies; summoned offspring remain exempt."
+        }
+      ]
+    },
+    "chest_rewards": {
+      "columns": [
+        "id",
+        "D",
+        "C",
+        "B",
+        "A",
+        "S",
+        "rank_policy",
+        "evolution_policy",
+        "empty_policy",
+        "break_policy"
+      ],
+      "rows": [
+        {
+          "id": "native_treasure",
+          "D": 1,
+          "C": 1,
+          "B": 1,
+          "A": 3,
+          "S": 5,
+          "rank_policy": "Uniform random eligible owned weapon or accessory per slot, recheck caps after each; no character XP or level.",
+          "evolution_policy": "if_eligible_at_open_choose_one_evolution_consumes_one_reward_slot_remaining_slots_random_ranks",
+          "empty_policy": "Stop when all owned weapons and accessories are maxed.",
+          "break_policy": "exactly_1_XP_no_upgrade_or_native_loot"
         }
       ]
     }
@@ -376,7 +758,9 @@
     "hooks": "requires_game_inspection",
     "slice": "prototype_design_unverified",
     "ui": "prototype_design_unverified",
-    "accessories": "installed_data_inspected_gameplay_pending"
+    "accessories": "installed_data_inspected_gameplay_pending",
+    "survival_rooms": "main_floors_1_to_5_native_generation_reward_and_real_300_second_session_verified_side_floors_pending",
+    "chest_rewards": "native_all_rarities_zero_keys_random_ranks_cap_and_A_evolution_remainder_verified"
   },
   "inspection": {
     "host": {
@@ -393,5 +777,60 @@
       "backend": "IL2CPP"
     },
     "status": "local_files_inspected_partial_solo_combat_verified"
+  },
+  "verified_cells": {
+    "chest_rewards.native_treasure.D": "in_game",
+    "chest_rewards.native_treasure.C": "in_game",
+    "chest_rewards.native_treasure.B": "in_game",
+    "chest_rewards.native_treasure.A": "in_game",
+    "chest_rewards.native_treasure.S": "in_game",
+    "chest_rewards.native_treasure.evolution_policy": "in_game",
+    "survival_rooms.survival_5_minutes.enemy_limits": "in_game",
+    "survival_rooms.survival_5_minutes.maximum_enemies": "in_game",
+    "survival_rooms.survival_5_minutes.replacement_delay_seconds": "in_game",
+    "survival_rooms.survival_5_minutes.reward_tiers": "in_game",
+    "survival_rooms.survival_5_minutes.currency_policy": "in_game",
+    "survival_rooms.survival_5_minutes.wall_rectangles": "in_game",
+    "survival_rooms.survival_5_minutes.column_rectangles": "in_game",
+    "survival_rooms.survival_5_minutes.table_positions": "in_game",
+    "chest_rewards.native_treasure.rank_policy": "in_game",
+    "survival_rooms.survival_5_minutes.hearts_per_side": "in_game",
+    "survival_rooms.survival_5_minutes.spawn_policy": "in_game",
+    "accessories.clover.id": "in_game",
+    "accessories.clover.companion_name": "in_game",
+    "accessories.clover.data_selector": "in_game",
+    "accessories.clover.sprite_selector": "in_game",
+    "accessories.clover.health_policy": "in_game",
+    "accessories.clover.host_stat": "in_game",
+    "accessories.clover.host_gain_per_rank": "in_game",
+    "survivors.antonio.armor_policy": "in_game",
+    "survivors.imelda.armor_policy": "in_game",
+    "survivors.pasqualina.id": "in_game",
+    "survivors.pasqualina.companion_name": "in_game",
+    "survivors.pasqualina.weapon_id": "in_game",
+    "survivors.pasqualina.data_selector": "in_game",
+    "survivors.pasqualina.sprite_selector": "in_game",
+    "survivors.pasqualina.ability_selector": "in_game",
+    "survivors.pasqualina.health_policy": "in_game",
+    "survivors.pasqualina.armor_policy": "in_game",
+    "survivors.pasqualina.projectile_speed_policy": "in_game",
+    "weapons.runetracer.id": "in_game",
+    "weapons.runetracer.companion_name": "in_game",
+    "weapons.runetracer.data_selector": "in_game",
+    "weapons.runetracer.sprite_selector": "in_game",
+    "weapons.runetracer.evolution_selector": "in_game",
+    "weapons.runetracer.effect_selector": "in_game",
+    "weapons.runetracer.evolved_effect_selector": "in_game",
+    "weapons.runetracer.effect_policy": "in_game",
+    "weapons.runetracer.explosion_effect_selector": "in_game",
+    "accessories.armor.id": "in_game",
+    "accessories.armor.companion_name": "in_game",
+    "accessories.armor.data_selector": "in_game",
+    "accessories.armor.sprite_selector": "in_game",
+    "accessories.armor.health_policy": "in_game",
+    "accessories.armor.host_stat": "in_game",
+    "accessories.armor.host_gain_per_rank": "in_game",
+    "ui.level_choice.navigation_actions": "in_game",
+    "ui.level_choice.stick_repeat_policy": "in_game"
   }
 }

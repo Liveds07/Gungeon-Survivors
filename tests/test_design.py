@@ -43,3 +43,26 @@ class DesignTests(unittest.TestCase):
         self.document["sheets"]["systems"]["rows"][0]["choices_per_stage"] = 4
         with self.assertRaises(ValueError):
             plan(0, self.document)
+
+    def test_survival_cover_preserves_walkable_arena_and_entry(self):
+        arena = self.document['sheets']['survival_rooms']['rows'][0]
+        width, height = arena['arena_width'], arena['arena_height']
+        walls = set()
+        for block in arena['wall_rectangles'] + arena['column_rectangles']:
+            for x in range(block['x'], block['x'] + block['width']):
+                for y in range(block['y'], block['y'] + block['height']):
+                    self.assertTrue(2 <= x < width - 2 and 6 <= y < height - 2)
+                    walls.add((x, y))
+        floor = {(x, y) for x in range(width) for y in range(height)} - walls
+        reachable = {(width // 2, 0)}
+        pending = list(reachable)
+        while pending:
+            x, y = pending.pop()
+            for point in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+                if point in floor and point not in reachable:
+                    reachable.add(point)
+                    pending.append(point)
+        self.assertEqual(floor, reachable, 'Cover must not isolate an enemy spawn or player route')
+        self.assertIn((width // 2, height // 2), reachable, 'Reward position stays reachable')
+        for table in arena['table_positions']:
+            self.assertIn((table['x'], table['y']), reachable)

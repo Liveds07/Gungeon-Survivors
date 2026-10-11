@@ -1,6 +1,7 @@
 using System;
 namespace GungeonSurvivors {
 public static class Progression {
+    public static float BossReward(int floor,float perFloor) { return Math.Max(1,floor)*perFloor; }
     public static float Required(int level,float initial,float linear,float quadratic) {
         float n=Math.Max(0,level-1);
         return Math.Max(1f,initial+linear*n+quadratic*n*n);

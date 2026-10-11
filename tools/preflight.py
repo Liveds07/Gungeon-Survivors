@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 SHEETS = Path(__file__).resolve().parents[1] / "design" / "sheets.json"
-DESIGN_SHEETS = {"rewards", "challenges", "systems"}
+DESIGN_SHEETS = {"rewards", "challenges", "systems", "survival_rooms", "chest_rewards"}
 
 
 def validate(document, scope="release"):

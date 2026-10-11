@@ -5,7 +5,9 @@ guns with evolving automatic weapons and optional survival branches.
 
 ## Status
 
-An early solo BepInEx 5 prototype runs in a private copy of the installed Gungeon. Companion sprites and weapon data come from the installed Vampire Survivors copy. Both automatic weapons have killed real enemies and awarded XP; the whip check used controlled positioning. The full first-playable target remains unfinished; there is no release.
+Version 0.2.18 is a local solo BepInEx 5 playable prototype in a private copy of the installed Gungeon. Antonio, Imelda, Poe and Pasqualina use content read from the installed Vampire Survivors copy. Whip, Magic Wand, Garlic and Runetracer have damaged real enemies; their evolutions and nine accessories are implemented. Optional five-minute challenge arenas have an interactive entrance sign, native cover, 12/14/16/18/20 enemies by main floor and ten-second replacements. Completion grants an unlocked A chest, with S chances of 0/25/50/75/100% by main floor, plus one full heart on each side. Native splits and summons spawn immediately and are exempt from the scheduled-enemy cap. Chests grant random owned weapon or accessory ranks (one for D/C/B, three for A, five for S), with eligible evolutions selectable, without changing character XP or level. Wand balance, regular-room enemy doubling, floor-scaled boss XP and cinematic HUD suppression remain in place. There is no published release; broader content, co-op and installation recipe verification remain unfinished.
+Hollow Heart increases capacity without changing current HP; Imelda reaches six hearts at rank five. Antonio starts with one native armor shield. Clover grants +1 native Coolness per rank, up to +5. Menu stick filtering uses a deliberate tilt and return to center; menu rumble is suppressed and controller death-menu confirmation no longer requires stick movement.
+Pasqualina starts with Runetracer and +10% projectile speed, increasing to +20/+30/+40% at levels 5/10/15. Runetracer passes through enemies and bounces off native walls with a fading trail. Armor grants one native shield per new rank, up to five, without refilling spent shields. Rank-eight Runetracer plus owned Armor unlocks NO FUTURE, which explodes on bounces and received hits.
 See LOCAL_DEVELOPMENT.md for setup and MODLOG.md for evidence and limitations.
 No game files, sprites, assemblies, or decompiled code belong in this repository.
 
@@ -18,7 +20,7 @@ No game files, sprites, assemblies, or decompiled code belong in this repository
 - Preserve Gungeon exploration, aimed gunplay and dodge rolls.
 - Offer optional survival branches with distinct modifiers and rewards.
   Branches rejoin the exploration route and never block the ordinary path.
-- Use seeded variation so runs differ but failures can be reproduced.
+- Keep dungeon variation seeded; upgrade offers use a fresh random sequence each run.
 - Solo is required. Local co-op is desired, contingent on real two-player tests;
   it is not implemented or advertised as supported.
 
@@ -57,6 +59,8 @@ verify all sheet cells, compile against actual host references, test in Gungeon,
 test installation, capture real gameplay, run Melty package/recipe/one-click
 checks, and establish the author's license, credits and remix permissions.
 The final publication requires the user's explicit approval.
+
+
 
 
 

@@ -11,6 +11,7 @@ $refs=@('mscorlib.dll','System.dll','System.Core.dll','Assembly-CSharp.dll','Ass
 $arguments=@('/nologo','/noconfig','/target:library','/nostdlib+',('/out:'+(Join-Path $output 'GungeonSurvivors.dll')))
 foreach($ref in $refs) { $path=Join-Path $managed $ref; if(!(Test-Path -LiteralPath $path)) {throw "Missing inspected reference: $path"}; $arguments+='/reference:'+$path }
 $arguments+='/reference:'+(Join-Path $LoaderFolder 'BepInEx\core\BepInEx.dll')
+$arguments+='/reference:'+(Join-Path $LoaderFolder 'BepInEx\core\0Harmony.dll')
 $arguments+=@(Get-ChildItem -LiteralPath (Join-Path $projectRoot 'plugin') -Filter '*.cs' | ForEach-Object {$_.FullName})
 & "$env:WINDIR\Microsoft.NET\Framework64\v4.0.30319\csc.exe" @arguments
 if($LASTEXITCODE -ne 0) {throw 'Plugin compilation failed'}
