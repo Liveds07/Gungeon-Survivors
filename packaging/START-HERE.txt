@@ -1,0 +1,32 @@
+Gungeon Survivors 0.2.18 — Windows x64 prototype package
+
+1. Extract this entire ZIP to a permanent folder on your PC.
+2. Double-click Launch.cmd. Keep the extracted folder; the game uses its runtime.
+3. If prompted, select your installed Gungeon and Vampire Survivors folders.
+4. The launcher copies Gungeon to a private lab, backs up existing saves,
+   configures BepInEx and the companion reader, then launches the private copy.
+5. Start a dungeon run. Choose a survivor using the mod's picker.
+
+Both purchased games are required. No game files are included. If your store
+requires its client to be open, keep it open. This does not bypass store checks.
+The launcher never changes either original game installation. The private copy
+shares Gungeon's existing save location; backups are made before launches.
+Allow enough free space for another full Gungeon copy. No administrator rights
+or global Python installation are required. No online dependency downloads occur.
+
+Runtime setup is at %LOCALAPPDATA%\GungeonSurvivors\portable.
+Content cache is at %LOCALAPPDATA%\GungeonSurvivors\content.
+Loader logs are under portable\game\BepInEx\LogOutput.log.
+Remove only the portable folder and extracted package to uninstall this setup;
+keep save-backups if you need them. Never delete the original game's saves.
+
+This is not a verified Melty release. The bundled DLL is the player's supplied
+0.2.18 build; it was not rebuilt in the cloud. Python tests pass, but the Windows
+launcher and bundled Windows runtime still require an actual PC launch test.
+Solo only. Co-op and broader game-version compatibility are not established.
+
+Python and the packages retain their upstream licenses and notices.
+UnityPy's export/__init__.py is modified to exclude eager audio conversion
+imports: this mod reads sprites and data only. FMOD's proprietary runtime is
+not distributed and audio export is unsupported in this trimmed runtime.
+Doorstop's corresponding source is included under licenses/.

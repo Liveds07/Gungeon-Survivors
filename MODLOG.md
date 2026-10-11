@@ -992,3 +992,21 @@ before-trail-menu/20261011-033340.zip restored and byte-verified; diagnostics an
 command file removed. Final source/lab hash b4e1c3ed45600536a09482d4835f021edc0b4f4618877e9617d7d20c6b7c3be8.
 Game closed, no automation pending, no publication. Physical8BitDo testing and
 existing full-run content balance validation remain separate.
+
+
+## Portable Windows packaging, 2026-10-11
+
+User requested all runtime requirements on GitHub. Added a self-contained
+Windows x64 ZIP under distributions, with supplied 0.2.18 DLL, reader, sheets,
+BepInEx 5.4.23.5, official Python 3.12.10 NuGet runtime and Windows sprite/data
+wheels. Eleven wheels retain upstream licenses. Trimmed UnityPy eager audio
+imports to avoid shipping unused proprietary FMOD; no audio exports supported.
+Doorstop 4.5.0 corresponding source and third-party notices included.
+Launcher discovers Steam/Epic folders, creates a separate local Gungeon copy,
+backs up existing saves, writes mod configuration and launches. Original game
+files are never uploaded or modified. No lab or extracted cache is included.
+Validation: ten Python tests with audio imports blocked; PowerShell AST syntax
+check; all 1,866 packaged file hashes verified; bundled DLL matches supplied
+build. Windows binaries, real setup and gameplay have NOT run in the cloud.
+Package is an installation candidate, not a verified Melty release.
+ZIP SHA256: 43af87f92ad01eca7f6930c6a883174a310668410323885952abbf9c20923eae.

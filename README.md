@@ -3,6 +3,21 @@
 Explore Enter the Gungeon as a Vampire Survivors character, combining aimed
 guns with evolving automatic weapons and optional survival branches.
 
+## Windows prototype download
+
+[Download the self-contained Windows x64 package](https://github.com/Liveds07/Gungeon-Survivors/raw/refs/heads/main/distributions/Gungeon-Survivors-0.2.18-Windows-x64.zip).
+Extract the entire ZIP and double-click `Launch.cmd`. It includes the supplied
+0.2.18 DLL, companion reader, design sheets, BepInEx, and a private Python
+runtime with sprite/data dependencies. No separate modding-tools installation
+is required. It finds Steam/Epic game folders or asks you to select them,
+creates a private Gungeon copy, backs up saves, configures paths and launches.
+Both installed games are required; no game content is bundled.
+
+The Windows launcher and bundled Windows runtime have not yet been executed
+in the cloud. Treat this as an installation candidate awaiting a real PC test,
+not a verified portable or Melty release. See the ZIP's `START-HERE.txt`.
+Packaging source is under `packaging/` and `tools/package_runtime.py`.
+
 ## Status
 
 Version 0.2.18 is a local solo BepInEx 5 playable prototype in a private copy of the installed Gungeon. Antonio, Imelda, Poe and Pasqualina use content read from the installed Vampire Survivors copy. Whip, Magic Wand, Garlic and Runetracer have damaged real enemies; their evolutions and nine accessories are implemented. Optional five-minute challenge arenas have an interactive entrance sign, native cover, 12/14/16/18/20 enemies by main floor and ten-second replacements. Completion grants an unlocked A chest, with S chances of 0/25/50/75/100% by main floor, plus one full heart on each side. Native splits and summons spawn immediately and are exempt from the scheduled-enemy cap. Chests grant random owned weapon or accessory ranks (one for D/C/B, three for A, five for S), with eligible evolutions selectable, without changing character XP or level. Wand balance, regular-room enemy doubling, floor-scaled boss XP and cinematic HUD suppression remain in place. There is no published release; broader content, co-op and installation recipe verification remain unfinished.
